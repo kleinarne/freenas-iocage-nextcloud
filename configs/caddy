@@ -51,7 +51,8 @@ load_rc_config ${name}
 : ${caddy_config_path="/usr/local/www/Caddyfile"}
 : ${caddy_logfile="/var/log/caddy.log"}
 : ${caddy_user="root"}
-: ${caddy_group="wheel"}
+: ${caddy_config_path}
+: ${caddy_SNI_default:=""}
 
 if [ "$caddy_cert_email" = "" ]
 then
@@ -62,7 +63,7 @@ fi
 pidfile="/var/run/${name}.pid"
 procname="${caddy_bin_path}" #enabled builtin pid checking for start / stop
 command="/usr/sbin/daemon"
-command_args="-p ${pidfile} /usr/bin/env ${caddy_env} ${procname} -cpu ${caddy_cpu} -log stdout -conf ${caddy_config_path} -agree -email ${caddy_cert_email} < /dev/null >> ${caddy_logfile} 2>&1"
+command_args="-p ${pidfile} /usr/bin/env ${caddy_env} ${procname} -cpu ${caddy_cpu} -log stdout -default-SNI ${caddy_SNI_default} -conf ${caddy_config_path} -agree -email ${caddy_cert_email} < /dev/null >> ${caddy_logfile} 2>&1"
 
 start_precmd="caddy_startprecmd"
 

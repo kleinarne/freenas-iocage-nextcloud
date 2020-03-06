@@ -263,6 +263,7 @@ iocage exec "${JAIL_NAME}" sed -i '' "s|mytimezone|${TIME_ZONE}|" /usr/local/etc
 
 iocage exec "${JAIL_NAME}" sysrc caddy_enable="YES"
 iocage exec "${JAIL_NAME}" sysrc caddy_cert_email="${CERT_EMAIL}"
+iocage exec "${JAIL_NAME}" sysrc caddy_SNI_default="${HOST_NAME}"
 iocage exec "${JAIL_NAME}" sysrc caddy_env="${DNS_ENV}"
 
 iocage restart "${JAIL_NAME}"
