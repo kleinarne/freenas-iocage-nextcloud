@@ -175,6 +175,9 @@ if [ "$(ls -A "${CONFIG_PATH}")" ]; then
 	if [ "$(ls -A "${DB_PATH}/${DATABASE}")" ]; then
 		echo "Database is compatible, continuing..."
 		REINSTALL="true"
+	elif [ "${DATABASE}" = "mariadb-external" ] || [ "${DATABASE}" = "pgsql-external" ]; then
+		echo "External database selected, unable to verify compatibility. REINSTALL MIGHT NOT WORK... Continuing"
+		REINSTALL="true"
 	else
 		echo "ERROR: You can not reinstall without the previous database"
 		echo "Please try again after removing your config files or using the same database used previously"
