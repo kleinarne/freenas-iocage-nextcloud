@@ -64,7 +64,7 @@ elif [ "${DATABASE}" = "pgsql" ]; then
 elif [ "${DATABASE}" = "pgsql-external" ]; then
   DB_NAME="PostgreSQL"
 elif [ "${DATABASE}" = "mariadb-external" ]; then
-  DB_NAME="PostgreSQL"
+  DB_NAME="MariaDB"
 fi
 
 ADMIN_PASSWORD=$(openssl rand -base64 12)
@@ -456,7 +456,9 @@ else
 	echo "--------------------"
 	echo "Database user = nextcloud"
 	echo "Database password = ${DB_PASSWORD}"
-	echo "The ${DB_NAME} root password is ${DB_ROOT_PASSWORD}"
+	if [ "${DATABASE}" = "mariadb" ] || [ "${DATABASE}" = "pgsql" ]; then
+		echo "The ${DB_NAME} root password is ${DB_ROOT_PASSWORD}"
+	fi
 	echo ""
 	echo "All passwords are saved in /root/${JAIL_NAME}_db_password.txt"
 fi
