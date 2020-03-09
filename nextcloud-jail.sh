@@ -93,6 +93,22 @@ if [ -z "${DEFAULT_GW_IP}" ]; then
   echo 'Configuration error: DEFAULT_GW_IP must be set'
   exit 1
 fi
+if [ -z "${DB_HOST}" ]; then
+  echo 'Configuration error: DB_HOST must be set'
+  exit 1
+fi
+if [ -z "${DB_DATABASE}" ]; then
+  echo 'Configuration error: DB_DATABASE must be set'
+  exit 1
+fi
+if [ -z "${DB_USER}" ]; then
+  echo 'Configuration error: DB_USER must be set'
+  exit 1
+fi
+if [ -z "${DB_PASSWORD}" ]; then
+  echo 'Configuration error: DB_PASSWORD must be set'
+  exit 1
+fi
 if [ -z "${POOL_PATH}" ]; then
   echo 'Configuration error: POOL_PATH must be set'
   exit 1
